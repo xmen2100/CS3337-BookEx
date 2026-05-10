@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Hero Banner -->
+<div class="home-hero mb-5">
+    <div class="home-hero-inner text-white py-5 px-4">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <h1 class="display-5 fw-bold mb-3">Welcome to Book Exchange</h1>
+                <p class="lead mb-4 opacity-75">Search, post, rate, and collect books all in one place. Built by students, for students.</p>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="{% url 'displaybooks' %}" class="btn btn-warning fw-semibold px-4">Browse Books</a>
+                    <a href="{% url 'aboutus' %}" class="btn btn-outline-light px-4">About Us</a>
+                </div>
+            </div>
+            <div class="col-lg-5 text-center d-none d-lg-block">
+                <div style="font-size: 7rem; line-height: 1; opacity: 0.85;">📚</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Feature Pills -->
+<div class="d-flex flex-wrap gap-2 justify-content-center mb-5">
+    <span class="feature-pill">🔍 Search Books</span>
+    <span class="feature-pill">⭐ Rate &amp; Review</span>
+    <span class="feature-pill">❤️ Favorites</span>
+    <span class="feature-pill">🛒 Shopping Cart</span>
+    <span class="feature-pill">📤 Post a Book</span>
+</div>
+
+<!-- Recently Added -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="h5 fw-bold mb-0">Recently Added Books</h2>
+    <a href="{% url 'displaybooks' %}" class="btn btn-sm btn-outline-primary">View All</a>
+</div>
+<div class="row g-4">
+    {% for book in featured_books %}
+        <div class="col-sm-6 col-md-4">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="book-cover-wrap">
+                    <img src="{% static book.pic_path %}" class="card-img-top book-cover" alt="{{ book.name }}">
+                    <span class="book-price-tag">${{ book.price }}</span>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h4 class="h6 fw-bold mb-1">{{ book.name }}</h4>
+                    <p class="text-muted small mb-3">Posted by {{ book.username }}</p>
+                    <a href="{% url 'book_detail' book.id %}" class="btn btn-outline-primary btn-sm mt-auto">View Details</a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12">
+            <div class="search-empty text-center py-5">
+                <div class="mb-3" style="font-size:3rem;">📭</div>
+                <h3 class="h5 fw-bold mb-2">No books yet</h3>
+                <p class="text-muted mb-3">Be the first to post a book.</p>
+                <a href="{% url 'postbook' %}" class="btn btn-primary">Post a Book</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

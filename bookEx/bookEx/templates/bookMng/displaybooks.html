@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Search Hero -->
+<div class="search-hero mb-4">
+    <div class="search-hero-inner py-5 px-3 text-center text-white">
+        <h1 class="fw-bold mb-2">Find Your Next Book</h1>
+        <p class="mb-4 opacity-75">Search by title or username across all listed books</p>
+        <form method="get" class="search-bar-form mx-auto">
+            <div class="input-group input-group-lg shadow">
+                <span class="input-group-text bg-white border-0 ps-3">🔍</span>
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ query }}"
+                    class="form-control border-0"
+                    placeholder="Search by title or username..."
+                    autofocus
+                >
+                <button type="submit" class="btn btn-warning fw-semibold px-4">Search</button>
+                {% if query %}
+                    <a href="{% url 'displaybooks' %}" class="btn btn-outline-light px-3">Clear</a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Results Header -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    {% if query %}
+        <p class="mb-0 text-muted">
+            Showing results for <strong>"{{ query }}"</strong>
+            &mdash; <strong>{{ books|length }}</strong> book{{ books|length|pluralize }} found
+        </p>
+    {% else %}
+        <p class="mb-0 text-muted"><strong>{{ books|length }}</strong> book{{ books|length|pluralize }} available</p>
+    {% endif %}
+    {% if query %}
+        <a href="{% url 'displaybooks' %}" class="btn btn-sm btn-outline-secondary">Show All</a>
+    {% endif %}
+</div>
+
+<!-- Book Grid -->
+<div class="row g-4">
+{% for book in books %}
+    <div class="col-md-6 col-xl-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="book-cover-wrap">
+                <img src="{% static book.pic_path %}" class="card-img-top book-cover" alt="{{ book.name }}">
+                <span class="book-price-tag">${{ book.price }}</span>
+            </div>
+            <div class="card-body d-flex flex-column">
+                <h3 class="h5 mb-1">{{ book.name }}</h3>
+                <p class="text-muted small mb-2">Posted by <strong>{{ book.username|default:"Unknown" }}</strong></p>
+
+                <!-- Star rating display -->
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="star-display">
+                        {% with avg=book.average_rating %}
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= avg %}
+                                    <span class="star filled">★</span>
+                                {% else %}
+                                    <span class="star">★</span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
+                    </div>
+                    <span class="small text-muted">{{ book.average_rating }}/5 ({{ book.rating_count }})</span>
+                    {% if book.user_rating %}
+                        <span class="badge bg-success-subtle text-success-emphasis small">Your rating: {{ book.user_rating }}★</span>
+                    {% endif %}
+                </div>
+
+                <div class="mt-auto d-flex flex-wrap gap-2">
+                    <a href="{% url 'book_detail' book.id %}" class="btn btn-outline-primary btn-sm">Details</a>
+                    <a href="{% url 'add_to_cart' book.id %}" class="btn btn-success btn-sm">🛒 Cart</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'toggle_favorite' book.id %}"
+                           class="btn btn-sm {% if book.id in favorite_ids %}btn-warning{% else %}btn-outline-warning{% endif %}">
+                            {% if book.id in favorite_ids %}⭐ Saved{% else %}☆ Save{% endif %}
+                        </a>
+                    {% else %}
+                        <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-outline-warning btn-sm">☆ Save</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% empty %}
+    <div class="col-12">
+        <div class="search-empty text-center py-5">
+            <div class="mb-3" style="font-size:3rem;">📭</div>
+            <h3 class="h5 fw-bold mb-2">No books found</h3>
+            {% if query %}
+                <p class="text-muted mb-3">No results for <strong>"{{ query }}"</strong>. Try a different keyword.</p>
+                <a href="{% url 'displaybooks' %}" class="btn btn-primary">Browse All Books</a>
+            {% else %}
+                <p class="text-muted mb-3">No books have been posted yet.</p>
+                <a href="{% url 'postbook' %}" class="btn btn-primary">Post the First Book</a>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock content %}

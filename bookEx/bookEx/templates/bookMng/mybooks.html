@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-1">My Books</h2>
+        <p class="text-muted mb-0">Books you've posted</p>
+    </div>
+    <a href="{% url 'postbook' %}" class="btn btn-primary">+ Post New Book</a>
+</div>
+
+{% if books %}
+<div class="card border-0 shadow-sm">
+    <div class="table-responsive">
+        <table class="table align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th class="ps-4">Book</th>
+                    <th>Price</th>
+                    <th>Rating</th>
+                    <th class="pe-4">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td class="ps-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="{% static book.pic_path %}" alt="{{ book.name }}" class="cart-thumb rounded">
+                            <a href="{% url 'book_detail' book.id %}" class="fw-semibold text-decoration-none">{{ book.name }}</a>
+                        </div>
+                    </td>
+                    <td><span class="badge bg-primary">${{ book.price }}</span></td>
+                    <td>
+                        <span class="text-warning">★</span>
+                        <span class="small">{{ book.average_rating }}/5</span>
+                        <span class="text-muted small">({{ book.rating_count }})</span>
+                    </td>
+                    <td class="pe-4">
+                        <a href="{% url 'book_delete' book.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+    <div class="search-empty text-center py-5">
+        <div class="mb-3" style="font-size:3rem;">📤</div>
+        <h3 class="h5 fw-bold mb-2">No books posted yet</h3>
+        <p class="text-muted mb-3">Share your first book with the community.</p>
+        <a href="{% url 'postbook' %}" class="btn btn-primary">Post a Book</a>
+    </div>
+{% endif %}
+
+{% endblock content %}

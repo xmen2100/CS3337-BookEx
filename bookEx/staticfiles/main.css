@@ -1,0 +1,235 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* ── Navbar ── */
+.navbar-brand {
+    font-size: 1.2rem;
+    letter-spacing: 0.4px;
+}
+
+/* ── Hero strip ── */
+.hero-strip {
+    background: linear-gradient(135deg, #0d6efd, #3d8bfd 55%, #6ea8fe);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    line-height: 1.2;
+}
+
+/* ── Book cards ── */
+.book-cover {
+    height: 200px;
+    object-fit: cover;
+}
+
+.detail-cover {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+}
+
+/* ── Cart thumbnail ── */
+.cart-thumb {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* ── Feature box ── */
+.feature-box {
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 1rem;
+    padding: 1.25rem;
+}
+
+/* ── Forms ── */
+input[type="text"],
+input[type="password"],
+input[type="url"],
+input[type="number"],
+input[type="file"],
+select,
+textarea {
+    display: block;
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.5rem;
+    background: #fff;
+    margin-bottom: 0.75rem;
+}
+
+/* ── Card hover effect ── */
+.card {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ── Badge ── */
+.badge {
+    font-size: 0.7rem;
+}
+
+/* ── Home Hero ── */
+.home-hero {
+    border-radius: 1.25rem;
+    overflow: hidden;
+}
+
+.home-hero-inner {
+    background: linear-gradient(135deg, #0d6efd 0%, #3d8bfd 55%, #6ea8fe 100%);
+}
+
+.feature-pill {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 2rem;
+    padding: 0.35rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #495057;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+/* ── Search / Browse Books ── */
+.search-hero {
+    border-radius: 1.25rem;
+    overflow: hidden;
+}
+
+.search-hero-inner {
+    background: linear-gradient(135deg, #0d6efd 0%, #3d8bfd 55%, #6ea8fe 100%);
+}
+
+.search-bar-form {
+    max-width: 640px;
+}
+
+.search-bar-form .input-group {
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+.search-bar-form .input-group-text {
+    font-size: 1.1rem;
+}
+
+/* Price tag overlay on book cover */
+.book-cover-wrap {
+    position: relative;
+}
+
+.book-price-tag {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    background: #0d6efd;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2rem;
+}
+
+/* Star rating */
+.star-display {
+    line-height: 1;
+}
+
+.star {
+    color: #dee2e6;
+    font-size: 1rem;
+}
+
+.star.filled {
+    color: #ffc107;
+}
+
+/* Empty state */
+.search-empty {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+/* ── About Us ── */
+.aboutus-hero {
+    border-radius: 1.25rem;
+    overflow: hidden;
+}
+
+.aboutus-hero-inner {
+    background: linear-gradient(135deg, #0d6efd 0%, #3d8bfd 55%, #6ea8fe 100%);
+}
+
+.aboutus-card {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.aboutus-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(13, 110, 253, 0.12) !important;
+}
+
+.aboutus-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+/* Tech stack badges */
+.tech-badge {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.badge-python  { background: #3572A5; color: #fff; }
+.badge-django  { background: #092E20; color: #fff; }
+.badge-html    { background: #e34c26; color: #fff; }
+.badge-css     { background: #264de4; color: #fff; }
+.badge-bootstrap { background: #7952b3; color: #fff; }
+.badge-sqlite  { background: #003B57; color: #fff; }
+.badge-js      { background: #f7df1e; color: #000; }
+
+/* Team cards */
+.team-card {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(13, 110, 253, 0.12) !important;
+}
+
+.team-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0d6efd, #6ea8fe);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.5px;
+}

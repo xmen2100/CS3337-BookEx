@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-1">🛒 Shopping Cart</h2>
+        <p class="text-muted mb-0">
+            {% if books %}{{ books|length }} item{{ books|length|pluralize }} in your cart{% else %}Your cart is empty{% endif %}
+        </p>
+    </div>
+    <a href="{% url 'displaybooks' %}" class="btn btn-outline-primary btn-sm">Continue Browsing</a>
+</div>
+
+{% if books %}
+<div class="row g-4 align-items-start">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="table-responsive">
+                <table class="table align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">Book</th>
+                            <th>Price</th>
+                            <th class="pe-4">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for book in books %}
+                        <tr>
+                            <td class="ps-4">
+                                <div class="d-flex align-items-center gap-3">
+                                    <img src="{% static book.pic_path %}" alt="{{ book.name }}" class="cart-thumb rounded">
+                                    <div>
+                                        <a href="{% url 'book_detail' book.id %}" class="fw-semibold text-decoration-none">{{ book.name }}</a>
+                                        <div class="small text-muted">{{ book.username }}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge bg-primary">${{ book.price }}</span></td>
+                            <td class="pe-4">
+                                <a href="{% url 'remove_from_cart' book.id %}" class="btn btn-outline-danger btn-sm">Remove</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h3 class="h5 fw-bold mb-3">Order Summary</h3>
+                <div class="d-flex justify-content-between mb-2 text-muted small">
+                    <span>Items ({{ books|length }})</span>
+                    <span>${{ total }}</span>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between fw-bold fs-5 mb-4">
+                    <span>Total</span>
+                    <span class="text-primary">${{ total }}</span>
+                </div>
+                <button class="btn btn-primary w-100 mb-2" disabled>Checkout (Demo)</button>
+                <p class="text-muted small text-center mb-0">This is a demo — no real checkout.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+    <div class="search-empty text-center py-5">
+        <div class="mb-3" style="font-size:3rem;">🛒</div>
+        <h3 class="h5 fw-bold mb-2">Your cart is empty</h3>
+        <p class="text-muted mb-3">Add some books and they'll show up here.</p>
+        <a href="{% url 'displaybooks' %}" class="btn btn-primary">Browse Books</a>
+    </div>
+{% endif %}
+
+{% endblock content %}

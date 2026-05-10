@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Hero Banner -->
+<div class="aboutus-hero mb-5">
+    <div class="aboutus-hero-inner text-center text-white py-5 px-3">
+        <div class="mb-3 fs-1">📚</div>
+        <h1 class="display-5 fw-bold mb-2">About Book Exchange</h1>
+        <p class="lead mb-0 opacity-75">A community-driven platform to discover, share, and organize books.</p>
+    </div>
+</div>
+
+<!-- Mission / What We Built / Why It Matters -->
+<div class="row g-4 mb-5">
+    <div class="col-md-4">
+        <div class="aboutus-card h-100 text-center p-4">
+            <div class="aboutus-icon mb-3">🎯</div>
+            <h3 class="h5 fw-bold mb-2">Our Mission</h3>
+            <p class="text-muted mb-0">Provide an easy way for users to discover books and manage book information online through a clean, friendly interface.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="aboutus-card h-100 text-center p-4">
+            <div class="aboutus-icon mb-3">🛠️</div>
+            <h3 class="h5 fw-bold mb-2">What We Built</h3>
+            <p class="text-muted mb-0">A Django website with search, ratings, favorite list, book posting, and a simple shopping cart — all in one place.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="aboutus-card h-100 text-center p-4">
+            <div class="aboutus-icon mb-3">💡</div>
+            <h3 class="h5 fw-bold mb-2">Why It Matters</h3>
+            <p class="text-muted mb-0">This project demonstrates full-stack web development using Python, Django, Bootstrap, and SQLite in a real working app.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Tech Stack -->
+<div class="card border-0 shadow-sm mb-5">
+    <div class="card-body p-4">
+        <h2 class="h5 fw-bold mb-3">Tech Stack</h2>
+        <div class="d-flex flex-wrap gap-2">
+            <span class="tech-badge badge-python">Python</span>
+            <span class="tech-badge badge-django">Django</span>
+            <span class="tech-badge badge-html">HTML</span>
+            <span class="tech-badge badge-css">CSS</span>
+            <span class="tech-badge badge-bootstrap">Bootstrap 5</span>
+            <span class="tech-badge badge-sqlite">SQLite</span>
+            <span class="tech-badge badge-js">JavaScript</span>
+        </div>
+    </div>
+</div>
+
+<!-- Team -->
+<h2 class="h5 fw-bold mb-3">Meet the Team</h2>
+<div class="row g-3">
+    {% for member in team_members %}
+    <div class="col-sm-6 col-md-4">
+        <div class="team-card text-center p-4 h-100">
+            <div class="team-avatar mx-auto mb-3">{{ member.initials }}</div>
+            <p class="fw-bold mb-1">{{ member.name }}</p>
+            <span class="badge bg-primary-subtle text-primary-emphasis">Developer</span>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-sm-6 col-md-4">
+        <div class="team-card text-center p-4 h-100">
+            <div class="team-avatar mx-auto mb-3">AR</div>
+            <p class="fw-bold mb-1">Anderson Rodriguez</p>
+            <span class="badge bg-primary-subtle text-primary-emphasis">Developer</span>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="team-card text-center p-4 h-100">
+            <div class="team-avatar mx-auto mb-3">AB</div>
+            <p class="fw-bold mb-1">Andrew Basurto</p>
+            <span class="badge bg-primary-subtle text-primary-emphasis">Developer</span>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="team-card text-center p-4 h-100">
+            <div class="team-avatar mx-auto mb-3">BD</div>
+            <p class="fw-bold mb-1">Bryan Duarte</p>
+            <span class="badge bg-primary-subtle text-primary-emphasis">Developer</span>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="team-card text-center p-4 h-100">
+            <div class="team-avatar mx-auto mb-3">CR</div>
+            <p class="fw-bold mb-1">Christopher Renteria</p>
+            <span class="badge bg-primary-subtle text-primary-emphasis">Developer</span>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="team-card text-center p-4 h-100">
+            <div class="team-avatar mx-auto mb-3">CM</div>
+            <p class="fw-bold mb-1">Clinton Ma</p>
+            <span class="badge bg-primary-subtle text-primary-emphasis">Developer</span>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="team-card text-center p-4 h-100">
+            <div class="team-avatar mx-auto mb-3">EZ</div>
+            <p class="fw-bold mb-1">Edgard Zaragoza</p>
+            <span class="badge bg-primary-subtle text-primary-emphasis">Developer</span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}

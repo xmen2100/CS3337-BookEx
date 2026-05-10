@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="alert alert-success shadow-sm border-0">
+    <h2 class="h4">Registration Success</h2>
+    <p class="mb-3">Your account was created successfully.</p>
+    <a href="{% url 'login' %}?next=/" class="btn btn-primary btn-sm">Go to Login</a>
+</div>
+{% endblock content %}

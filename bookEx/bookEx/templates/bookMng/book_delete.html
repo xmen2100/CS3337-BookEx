@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="alert alert-success shadow-sm border-0">
+    <h2 class="h4">Book Deleted</h2>
+    <p class="mb-3">The book was deleted successfully.</p>
+    <a href="{% url 'mybooks' %}" class="btn btn-primary btn-sm">Back to My Books</a>
+</div>
+{% endblock content %}
